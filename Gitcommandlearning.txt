@@ -30,3 +30,15 @@
 
 14、创建ssh key
 	ssh-keygen -t rsa -C "youremail@example.com"
+
+15、关联一个远程库
+	git remote add origin git@github.com:gazxm/learngit.git
+
+16、推送到远端库
+	git push -u origin master (第一次推送)
+	git push origin master
+	git push -f origin master (强制推送，如果远端库和本地库有冲突，这样推送会忽略掉远端库的修改，而只把本地库推送上去，当然也可以手动修改完本地库在推送到远端库)
+
+17、从远端库取回某个分支的更新，再与本地的指定分支合并
+	git pull <远程主机名> <远程分支名>:<本地分支名>
+17、
