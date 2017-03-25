@@ -1,0 +1,74 @@
+1、git config --global user.name "Your Name"
+	 git config --global user.email "email@example.com"
+	 注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+2、pwd：用于显示当前目录。
+3、git init：可以把这个目录变成Git可以管理的仓库
+4、git add <file> ：把文件添加到暂存区
+		git add .：添加所有的修改的文件到暂存区
+5、git commit 把文件提交到仓库 
+		git commit -m '这里可以添加中英文的注释'
+		git add 和 git commit命令可以简写为 git commit -a -m '注释'
+6、git status：可以让我们时刻掌握仓库当前的状态
+			working directory clean： 工作目录是干净的，表示工作区没有任何修改
+7、git diff <file>:	可以对比两个文件的差异
+8、git log：显示从最近到最远的提交日志，这里会显示作者，时间以及注释
+		git log --pretty=oneline：这里不会显示作者，时间，但是会显示注释
+9、git reset --hard HEAD^:	将仓库回退到上一个版本
+		这里的HEAD^也可以使用commit id，就可以回退到指定的版本
+10、git reflog：可以记录你的每一次命令，可以查看到所有的commit id
+11、git checkout -- <file>：可以丢弃工作区的修改(--很重要，不然就是切换分支)
+			这里有两种情况：
+				第一种：文件自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+				第二种：一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态
+				总之，就是让这个文件回到最近一次git commit或git add时的状态。
+12、git reset HEAD <file>：可以把暂存区的修改撤销掉（unstage），重新放回工作区
+
+13、删除文件操作：
+	两种：
+		第一种：rm <file> 这种只是删除了工作区的文件，直接使用git checkout -- <file>即可恢复
+		第二种：git rm <file> 相当于执行了rm <file>和git add命令，删除这个文件添加到了暂存区，如果需要恢复需要先git reset HEAD <file>，在git checkout -- <file>	(所以如果第一种git add了 也需要如此操作)
+
+14、创建ssh key
+	ssh-keygen -t rsa -C "youremail@example.com"
+
+15、关联一个远程库
+	git remote add origin git@github.com:gazxm/learngit.git
+
+16、推送到远端库
+	git push -u origin master (第一次推送)
+	git push origin master
+	git push -f origin master (强制推送，如果远端库和本地库有冲突，这样推送会忽略掉远端库的修改，而只把本地库推送上去，当然也可以手动修改完本地库在推送到远端库)
+
+17、从远端库取回某个分支的更新，再与本地的指定分支合并
+	git pull <远程主机名> <远程分支名>:<本地分支名>
+
+18、从远程库克隆
+	git clone git@github.com:gazxm/learngit.git
+
+19、创建与合并分支
+	git branch dev:	创建一个dev的分支
+	git checkout dev: 切换到dev的分支
+	git branch：查看当前所有分支
+	
+	git merge dev：用于合并指定分支到当前分支，如果这时候在master分支上，则是将dev分支合并到master分支上(这是Fast-forward模式，快进模式) --no-ff 就是普通模式合并：合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+
+	git branch -d dev：删除dev分支
+	git checkout -b dev：创建dev分支并且切换到dev分支上
+
+20、解决冲突：
+	Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存：
+	例如：<<<<<<< HEAD
+	Creating a new branch is quick & simple.
+	=======
+	Creating a new branch is quick AND simple.
+	>>>>>>> feature1
+	使用git log --graph可以看到分支的合并情况，分支合并图
+	git log --graph --pretty=oneline --abbrev-commit： 简化的分支合并图
+
+21、BUG分支
+	git stash：可以把当前工作现场"储藏"起来，等以后恢复现场后继续工作
+	git stash list：查看储藏的工作现场
+	git stash apply: 恢复后，stash内容并不删除，需要使用git stash drop删除
+	git stash pop：恢复的同时把stash内容也删了。
+
+22、
