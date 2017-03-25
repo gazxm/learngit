@@ -104,3 +104,13 @@
 	touch .gitignore：在当前目录生成一个.gitignore文件
 
 26、cat <filename>：查看该文件
+
+27、[alias]
+  co = checkout
+  ci = commit
+  cia = commit -a
+  br = branch
+  st = status
+  last = log -1
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  po = push origin
