@@ -71,4 +71,36 @@
 	git stash apply: 恢复后，stash内容并不删除，需要使用git stash drop删除
 	git stash pop：恢复的同时把stash内容也删了。
 
-22、
+22、多人协作
+	git remote： 查看远程库的信息
+	git remote -v： 可以显示更详细的信息(可以显示fetch抓取和push推送地址) 如果没有推送权限，则看不到push的地址
+	推送分支：
+		git push origin master: 推送master分支
+		git push origin dev: 推送dev分支
+
+		但是，并不是一定要把本地分支往远程推送
+		master分支是主分支，因此要时刻与远程同步；
+		dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+		bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+		feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
+
+23、创建标签
+	git tag <name>: 可以对之前一个commit的id 打上一个tag
+	git tag: 查看所有标签
+	git tag <name> <commit id>: 可以对之前的对应的commit id打上一个tag
+		注意：标签不是按时间顺序列出，而是按字母排序的。
+	git tag -a v0.1 -m '这里是标签v0.1的说明' <commit id>：可以创建带有说明的标签tag，用-a指定标签名，-m指定说明的文字
+	git show <tagname>：可以查看说明文字
+
+24、操作标签
+	git tag -d v0.1：删除本地标签。创建的标签只会存储在本地，不会自动推送到远程库。
+	git push origin v1.0：将本地标签v1.0推送到远程库
+	git push origin --tags：一次性推送全部尚未推送到远程的本地标签
+	删除远程库的标签：
+		第一步：删除本地的标签
+		第二步：git push origin :refs/tags/v0.9：删除远程库标签v0.9
+
+25、忽略特殊文件
+	touch .gitignore：在当前目录生成一个.gitignore文件
+
+26、cat <filename>：查看该文件
