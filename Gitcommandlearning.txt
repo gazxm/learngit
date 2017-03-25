@@ -70,3 +70,16 @@
 	git stash list：查看储藏的工作现场
 	git stash apply: 恢复后，stash内容并不删除，需要使用git stash drop删除
 	git stash pop：恢复的同时把stash内容也删了。
+
+22、多人协作
+	git remote： 查看远程库的信息
+	git remote -v： 可以显示更详细的信息(可以显示fetch抓取和push推送地址) 如果没有推送权限，则看不到push的地址
+	推送分支：
+		git push origin master: 推送master分支
+		git push origin dev: 推送dev分支
+
+		但是，并不是一定要把本地分支往远程推送
+		master分支是主分支，因此要时刻与远程同步；
+		dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+		bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+		feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
