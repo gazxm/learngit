@@ -42,4 +42,31 @@
 17、从远端库取回某个分支的更新，再与本地的指定分支合并
 	git pull <远程主机名> <远程分支名>:<本地分支名>
 
-18、
+18、从远程库克隆
+	git clone git@github.com:gazxm/learngit.git
+
+19、创建与合并分支
+	git branch dev:	创建一个dev的分支
+	git checkout dev: 切换到dev的分支
+	git branch：查看当前所有分支
+	
+	git merge dev：用于合并指定分支到当前分支，如果这时候在master分支上，则是将dev分支合并到master分支上(这是Fast-forward模式，快进模式) --no-ff 就是普通模式合并：合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+
+	git branch -d dev：删除dev分支
+	git checkout -b dev：创建dev分支并且切换到dev分支上
+
+20、解决冲突：
+	Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存：
+	例如：<<<<<<< HEAD
+	Creating a new branch is quick & simple.
+	=======
+	Creating a new branch is quick AND simple.
+	>>>>>>> feature1
+	使用git log --graph可以看到分支的合并情况，分支合并图
+	git log --graph --pretty=oneline --abbrev-commit： 简化的分支合并图
+
+21、BUG分支
+	git stash：可以把当前工作现场"储藏"起来，等以后恢复现场后继续工作
+	git stash list：查看储藏的工作现场
+	git stash apply: 恢复后，stash内容并不删除，需要使用git stash drop删除
+	git stash pop：恢复的同时把stash内容也删了。
